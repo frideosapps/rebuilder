@@ -51,14 +51,15 @@ class CounterWidget extends StatelessWidget {
                       // Accessing to `counterUp` to the `DataModel`
                       // derived class provided to the `dataModel` parameter
                       return Text('${data.counterUp}');
+                      // It is possible to accesse directly to the `counterUp`
+                      // without using the `dataModel` parameter:
+                      //
+                      // builder: (state, _) {
+                      // return Text('${countersModel.counterUp}');
                     }),
-                Column(
-                  children: <Widget>[
-                    RaisedButton(
-                      child: const Text('+'),
-                      onPressed: countersModel.incrementCounterUp,
-                    ),
-                  ],
+                RaisedButton(
+                  child: const Text('+'),
+                  onPressed: countersModel.incrementCounterUp,
                 ),
               ],
             ),
@@ -71,12 +72,11 @@ class CounterWidget extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
-                Rebuilder<CountersModel>(
+                Rebuilder<RebuilderObject>(
+                    dataModel: countersModel.counterDown,
                     rebuilderState: countersModel.counterDownState,
-                    builder: (state, _) {
-                      // Accessing to `counterUp` without using the
-                      // `dataModel` parameter of the `Rebuilder` widget.
-                      return Text('${countersModel.counterDown.value}');
+                    builder: (state, data) {
+                      return Text('${data.value}');
                     }),
                 RaisedButton(
                   child: const Text('-'),

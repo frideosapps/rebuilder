@@ -4,7 +4,7 @@ import 'data_model.dart';
 
 ///
 /// Simple data model provider that extends a StatefulWidget and use
-/// an InheritedWidget to share the model with the widgets on the
+/// an InheritedWidget to provide the model to the widgets on the
 /// tree.
 ///
 class DataModelProvider<T extends DataModel> extends StatefulWidget {
