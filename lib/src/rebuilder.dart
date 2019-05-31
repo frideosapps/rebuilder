@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'state_wrapper.dart';
 
+class _ContextWrapper {
+  BuildContext context;
+}
+
+class _StateRebuilderWrapper {
+  _StateRebuilder state;
+}
+
 typedef RebuilderBuilder<T> = Widget Function(Rebuilder<T> state, T data);
 
 ///
@@ -70,13 +78,13 @@ class Rebuilder<T> extends StatefulWidget {
 
   final T dataModel;
 
-  State _state;
+  final _StateRebuilderWrapper _state = _StateRebuilderWrapper();
 
-  BuildContext _context;
+  final _ContextWrapper _context = _ContextWrapper();
 
   // UTILS
   //
-  BuildContext get context => _context;
+  BuildContext get context => _context.context;
   //
   Size get size => MediaQuery.of(context).size;
   //
@@ -84,7 +92,9 @@ class Rebuilder<T> extends StatefulWidget {
 
   /// By calling this method the `Rebuilder` widget rebuilds.
   void rebuild() {
-    _state.setState(() {});
+    if (_state.state.mounted) {
+      _state.state.rebuild();
+    }
   }
 
   /// If a state is passed to the `parentState` parameter of the
@@ -95,8 +105,8 @@ class Rebuilder<T> extends StatefulWidget {
   }
 
   void _getState(State state, BuildContext context) {
-    _state = state;
-    _context = context;
+    _state.state = state;
+    _context.context = context;
   }
 
   @override
@@ -108,6 +118,12 @@ class Rebuilder<T> extends StatefulWidget {
 ///
 ///
 class _StateRebuilder<T> extends State<Rebuilder<T>> {
+  void rebuild() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     widget._getState(this, context);

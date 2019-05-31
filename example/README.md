@@ -1,16 +1,9 @@
-# example
+#### [Example app](https://github.com/frideosapps/rebuilder/tree/master/example)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Check out the example app to know how to:
+- Implement a counter
+- Use the DataModel to separate the UI from the business logic
+- Implement a dynamic theme changer with a `RebuilderObject`
+- Bind a function to a `RebuilderObject`
+- Sharing data between widgets
+- Update only a subtree of widgets
