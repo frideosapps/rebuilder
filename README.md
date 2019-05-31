@@ -16,10 +16,10 @@ It consists of:
   
 
 
-### Getting started
+#### Getting started
 
 
-#### 1. Define a `DataModel`
+##### 1. Define a `DataModel`
 ```dart
 class CountersModel extends DataModel {
   CountersModel() {
@@ -67,7 +67,7 @@ class CountersModel extends DataModel {
 }
 ```
 
-#### 2. Provide the `CountersModel` by using the `DataModelProvider` widget
+##### 2. Provide the `CountersModel` by using the `DataModelProvider` widget
 ```dart
 final countersModel = CountersModel()
 
@@ -78,14 +78,14 @@ DataModelProvider<CountersModel>(
 ```
 
 
-#### 3. Get the `CountersModel` instance from the `context` of a widget in the tree
+##### 3. Get the `CountersModel` instance from the `context` of a widget in the tree
 ```dart
   Widget build(BuildContext context) {
     final countersModel = DataModelProvider.of<CountersModel>(context);
 ```
 
 
-#### 4. Bind the `StatesWrapper` instances to the `Rebuilder` widgets in the view
+##### 4. Bind the `StatesWrapper` instances to the `Rebuilder` widgets in the view
 ```dart
 Rebuilder<CountersModel>(
     dataModel: countersModel,
@@ -94,7 +94,8 @@ Rebuilder<CountersModel>(
       // Accessing to `counterUp` to the `DataModel`
       // derived class provided to the `datparameter
       return Text('${data.counterUp}');
-      // It is possible to accesse directly`counterUp`
+      // 
+      // It is possible to directly access to `counterUp`
       // without using the `dataModel` parameter:
       //
       // builder: (state, _) {
@@ -139,7 +140,7 @@ Rebuilder<CountersModel>(
   }),
 ```
 
-### [Example app](https://github.com/frideosapps/rebuilder/tree/master/example)
+#### [Example app](https://github.com/frideosapps/rebuilder/tree/master/example)
 Check out the example app to know how to:
 - Implement a counter
 - Use the DataModel to separate the UI from the business logic

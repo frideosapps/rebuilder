@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-class AppThemes {
-  Map<String, ThemeData> themes;
-}
-
 final themes = {
   'Default': ThemeData(
     brightness: Brightness.light,
