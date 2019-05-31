@@ -87,40 +87,56 @@ DataModelProvider<CountersModel>(
 
 #### 4. Bind the `StatesWrapper` instances to the `Rebuilder` widgets in the view
 ```dart
- Rebuilder<CountersModel>(
-     dataModel: countersModel,
-     rebuilderState: countersModel.counterUpState,
-     builder: (state, data) {
-       // Accessing to `counterUp` to the `DataModel`
-       // derived class provided to the `dataModel`        
-       return Text('${data.counterUp}');
- }),
- 
- Rebuilder<CountersModel>(                    
-     rebuilderState: countersModel.counterDownState,
-     builder: (state, _) {
-       // Accessing to `counterUp` without using the
-       // `dataModel` parameter of the `Rebuilder` widget. 
-       return Text('${countersModel.counterDown.value}');
- }),
+Rebuilder<CountersModel>(
+    dataModel: countersModel,
+    rebuilderState: countersModel.counterUpState,
+    builder: (state, data) {
+      // Accessing to `counterUp` to the `DataModel`
+      // derived class provided to the `datparameter
+      return Text('${data.counterUp}');
+      // It is possible to accesse directly`counterUp`
+      // without using the `dataModel` parameter:
+      //
+      // builder: (state, _) {
+      // return Text('${countersModel.counterUp}');
+    }),
+RaisedButton(
+  child: const Text('+'),
+  onPressed: countersModel.incrementCounterUp,
+),
 
- Rebuilder<CountersModel>(
-     dataModel: countersModel,
-     rebuilderState: countersModel.counterMulState,
-     builder: (state, data) {
-       return Column(children: <Widget>[
-         Text('${data.counterMul}'),
-         RaisedButton(
-             child: const Text('*'),
-             onPressed: () {
-               data.counterMul *= 2;
-               if (data.counterMul > 65536) {
-                 data.counterMul = 2;
-               }
-               state.rebuild();                                          
-               }),
-       ]);
-     }),
+
+ 
+Rebuilder<RebuilderObject>(
+  dataModel: countersModel.counterDown,
+  rebuilderState: countersModel.counterDownState,
+  builder: (state, data) {
+    return Text('${data.value}');
+  }),
+RaisedButton(
+  child: const Text('-'),
+  onPressed: countersModel.decrementCounterDown,
+)
+
+
+
+Rebuilder<CountersModel>(
+  dataModel: countersModel,
+  rebuilderState: countersModel.counterMulState,
+  builder: (state, data) {
+    return Column(children: <Widget>[
+      Text('${data.counterMul}'),
+      RaisedButton(
+          child: const Text('*'),
+          onPressed: () {
+            data.counterMul *= 2;
+            if (data.counterMul > 65536) {
+              data.counterMul = 2;
+            }
+            state.rebuild();                                          
+            }),
+    ]);
+  }),
 ```
 
 ### [Example app](https://github.com/frideosapps/rebuilder/tree/master/example)
