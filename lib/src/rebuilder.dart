@@ -92,9 +92,7 @@ class Rebuilder<T> extends StatefulWidget {
 
   /// By calling this method the `Rebuilder` widget rebuilds.
   void rebuild() {
-    if (_state.state.mounted) {
-      _state.state.rebuild();
-    }
+    _state.state.rebuild();
   }
 
   /// If a state is passed to the `parentState` parameter of the
