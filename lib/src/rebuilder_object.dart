@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 
-import 'state_wrapper.dart';
+import 'rebuilder_state.dart';
 
 ///
-/// This class is used to create an object bound to a `StateWrapper`
+/// This class is used to create an object bound to a `RebuilderState`
 /// in order to rebuild the widget associated to this state whenever
 /// a new value is set.
 ///
-/// When used the default constructor is mandatory to set a `StateWrapper`
+/// When used the default constructor is mandatory to set a `RebuilderState`
 /// by using the setter `state`.
 ///
 /// Parameters:
@@ -17,13 +17,13 @@ import 'state_wrapper.dart';
 ///
 /// (From the example app)
 ///
-/// E.g. declare a StateWrapper for the `MaterialApp` widget to rebuild
+/// E.g. declare a RebuilderState for the `MaterialApp` widget to rebuild
 /// it when a new app theme is set. This is then given to the
 /// `rebuilderState` parameter of the [Rebuilder] widget.
 ///
 /// In the `DataModel` derived object:
 /// ```dart
-/// final materialState = StateWrapper();
+/// final materialState = RebuilderState();
 ///
 /// RebuilderObject<String> chosenTheme;
 /// ```
@@ -68,7 +68,7 @@ class RebuilderObject<T> {
   }
 
   RebuilderObject.init(
-      {@required StateWrapper rebuilderState,
+      {@required RebuilderState rebuilderState,
       this.initialData,
       Function onChange})
       : assert(rebuilderState != null) {
@@ -84,15 +84,15 @@ class RebuilderObject<T> {
 
   final T initialData;
   T _value;
-  StateWrapper _state;
+  RebuilderState _state;
   Function _onChange = () {};
 
-  set state(StateWrapper state) {
+  set state(RebuilderState state) {
     assert(state != null);
     _state = state;
   }
 
-  StateWrapper get state => _state;
+  RebuilderState get state => _state;
 
   T get value => _value;
 

@@ -5,7 +5,7 @@ import '../repository.dart';
 class CountersModel extends DataModel {
   CountersModel({this.repository}) {
     // Initialize the instance of the `RebuilderObject` with
-    // with an instance of a `StateWrapper` that will be bound
+    // with an instance of a `RebuilderState` that will be bound
     // to a `Rebuilder` widget.
     counterDown = RebuilderObject<int>.init(
         rebuilderState: counterDownState,
@@ -16,10 +16,10 @@ class CountersModel extends DataModel {
   final Repository repository;
 
   // STATES
-  final counterUpState = StateWrapper();
-  final counterDownState = StateWrapper();
-  final counterMulState = StateWrapper();
-  final listUsersState = StateWrapper();
+  final counterUpState = RebuilderState();
+  final counterDownState = RebuilderState();
+  final counterMulState = RebuilderState();
+  final listUsersState = RebuilderState();
 
   // COUNTERS
   int counterUp = 0;

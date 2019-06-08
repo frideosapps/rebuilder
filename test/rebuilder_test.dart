@@ -13,7 +13,7 @@ import 'package:rebuilder/rebuilder.dart';
 class AppModel extends DataModel {
   String text = 'test';
 
-  final counterUpState = StateWrapper();
+  final counterUpState = RebuilderState();
 
   int counterUp = 0;
 

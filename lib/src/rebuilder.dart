@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'state_wrapper.dart';
+import 'rebuilder_state.dart';
 
 class _ContextWrapper {
   BuildContext context;
@@ -14,7 +14,7 @@ typedef RebuilderBuilder<T> = Widget Function(Rebuilder<T> state, T data);
 
 ///
 /// The `Rebuilder` widget builds itself whenever the `rebuild`
-/// method of the `StateWrapper` associated to it is called.
+/// method of the `RebuilderState` associated to it is called.
 ///
 /// In the context of a widget, the `Rebuilder` is used to make
 /// it possible rebuilding only a portion of it, by wrapping
@@ -22,13 +22,13 @@ typedef RebuilderBuilder<T> = Widget Function(Rebuilder<T> state, T data);
 /// to avoid to rebuild the entire widgets tree.
 ///
 /// Parameters:
-/// - `rebuilderState`: an instance of a `StateWrapper`
+/// - `rebuilderState`: an instance of a `RebuilderState`
 /// - `builder`
 /// - `dataModel`: if provided, this instance of [DataModel] is passed
 ///  through the builder.
 /// - `parentState`: if provided, inside the builder it is possible call
 /// the method `rebuildParent`, to rebuild the `Rebuilder` associated to
-/// this `StateWrapper` instance.
+/// this `RebuilderState` instance.
 ///
 /// E.g.
 /// ```dart
@@ -70,7 +70,7 @@ class Rebuilder<T> extends StatefulWidget {
     }
   }
 
-  final StateWrapper rebuilderState;
+  final RebuilderState rebuilderState;
 
   final Rebuilder parentState;
 

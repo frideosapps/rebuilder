@@ -17,10 +17,10 @@ class TreeModel implements DataModel {
   String secondString;
   String thirdString;
 
-  final usersState = StateWrapper();
-  final firstSubtreeState = StateWrapper();
-  final secondSubtreeState = StateWrapper();
-  final thirdSubtreeState = StateWrapper();
+  final usersState = RebuilderState();
+  final firstSubtreeState = RebuilderState();
+  final secondSubtreeState = RebuilderState();
+  final thirdSubtreeState = RebuilderState();
 
   String _randomString() {
     var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -19,8 +19,8 @@ class AppModel extends DataModel {
 
   final Repository repository;
 
-  final materialState = StateWrapper();
-  final homePage = StateWrapper();
+  final materialState = RebuilderState();
+  final homePage = RebuilderState();
 
   CountersModel countersModel;
   TreeModel treeModel;

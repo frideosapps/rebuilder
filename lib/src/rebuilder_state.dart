@@ -3,7 +3,7 @@ import 'rebuilder.dart';
 ///
 /// Used to associate a state to a `Rebuilder` widget.
 ///
-class StateWrapper {
+class RebuilderState {
   Rebuilder state;
 
   ///
@@ -11,7 +11,7 @@ class StateWrapper {
   void rebuild() => state.rebuild();
 
   ///
-  /// If a `StateWrapper` is provided  to the `parentState` parameter
+  /// If a `RebuilderState` is provided  to the `parentState` parameter
   /// of the `Rebuilder` widget, it rebuilds the `Rebuilder` widget
   /// associated to this state.
   void rebuildParent() => state.rebuildParent();

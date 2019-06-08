@@ -2,7 +2,7 @@ name: rebuilder
 author: Francesco Mineo <frideosapps@gmail.com>
 homepage: https://github.com/frideosapps/rebuilder
 description: An easy and minimalistic state management library for flutter.
-version: 0.1.0+1
+version: 0.2.0
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

@@ -8,15 +8,27 @@ It consists of:
   
 - A `DataModelProvider` that provides this model to the widgets tree by using an InheritedWidget.
   
-- A `StateWrapper` that holds the state of a `Rebuilder` widget.
+- A `RebuilderState` that holds the state of a `Rebuilder` widget.
   
-- The `Rebuilder` widget that represents the entity which rebuilds every time the `rebuild` method of the associated `StateWrapper`'s `state` property is called. 
+- The `Rebuilder` widget that represents the entity which rebuilds every time the `rebuild` method of the associated `RebuilderState`'s `state` property is called. 
   
-- The `RebuilderObject`: an object bound to a `StateWrapper` in order to rebuild the `Rebuilder` widget associated to this state whenever a new value is set.
+- The `RebuilderObject`: an object bound to a `RebuilderState` in order to rebuild the `Rebuilder` widget associated to this state whenever a new value is set.
   
 
+##### Examples built with this library:
+- **[Rebuilder example](https://github.com/frideosapps/rebuilder/tree/master/example)**. Check out the example app to know how to: 
+  - Implement a counter
+  - Use the DataModel to separate the UI from the business logic
+  - Implement a dynamic theme changer with a `RebuilderObject`
+  - Bind a function to a `RebuilderObject`
+  - Sharing data between widgets
+  - Update only a subtree of widgets
+  
+- **[Quiz game](https://github.com/frideosapps/trivia_rebuilder)**: a simple trivia game built with Flutter and this package.
 
-#### Getting started
+
+
+## Getting started
 
 
 ##### 1. Define a `DataModel`
@@ -25,7 +37,7 @@ class CountersModel extends DataModel {
   CountersModel() {
 
     // Initialize the instance of the `RebuilderObject` with
-    // with an instance of a `StateWrapper` that will be bound
+    // with an instance of a `RebuilderState` that will be bound
     // to a `Rebuilder` widget.
     counterDown = RebuilderObject<int>.init(
         rebuilderState: counterDownState,
@@ -34,9 +46,9 @@ class CountersModel extends DataModel {
   }
   
   // STATES
-  final counterUpState = StateWrapper();
-  final counterDownState = StateWrapper();
-  final counterMulState = StateWrapper(); 
+  final counterUpState = RebuilderState();
+  final counterDownState = RebuilderState();
+  final counterMulState = RebuilderState(); 
 
   // COUNTERS
   int counterUp = 0;
@@ -85,14 +97,14 @@ DataModelProvider<CountersModel>(
 ```
 
 
-##### 4. Bind the `StatesWrapper` instances to the `Rebuilder` widgets in the view
+##### 4. Bind the `RebuilderState` instances to the `Rebuilder` widgets in the view
 ```dart
 Rebuilder<CountersModel>(
     dataModel: countersModel,
     rebuilderState: countersModel.counterUpState,
     builder: (state, data) {
-      // Accessing to `counterUp` to the `DataModel`
-      // derived class provided to the `datparameter
+      // Accessing to `counterUp` in the `DataModel`
+      // derived class provided through the `data` parameter
       return Text('${data.counterUp}');
       // 
       // It is possible to directly access to `counterUp`
@@ -140,14 +152,3 @@ Rebuilder<CountersModel>(
   }),
 ```
 
-
-
-#### [Example app](https://github.com/frideosapps/rebuilder/tree/master/example)
-
-Check out the example app to know how to:
-- Implement a counter
-- Use the DataModel to separate the UI from the business logic
-- Implement a dynamic theme changer with a `RebuilderObject`
-- Bind a function to a `RebuilderObject`
-- Sharing data between widgets
-- Update only a subtree of widgets

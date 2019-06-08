@@ -22,7 +22,7 @@ class AppModel extends DataModel {
 
   RebuilderObject<int> counterDown;
 
-  final counterDownState = StateWrapper();
+  final counterDownState = RebuilderState();
 
   bool onChangeCalled = false;
 

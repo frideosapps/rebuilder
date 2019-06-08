@@ -46,12 +46,13 @@ class MaterialPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final appModel = DataModelProvider.of<AppModel>(context);
 
-    return Rebuilder(
+    return Rebuilder<RebuilderObject<String>>(
+        dataModel: appModel.chosenTheme,
         rebuilderState: appModel.materialState,
-        builder: (state, _) {
+        builder: (state, data) {
           return MaterialApp(
               title: 'Rebuilder example',
-              theme: themes[appModel.chosenTheme.value],
+              theme: themes[data.value],
               home: MainPage());
         });
   }
